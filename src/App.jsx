@@ -7,12 +7,19 @@ import NotFound from './pages/404';
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/character/:id" element={<CharacterDetail />} />
-      </Routes>
-    </Router>
+    <div className="min-h-screen w-full flex flex-col bg-gray-900 text-white">
+      <Router>
+        <main>
+          <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/characters" element={<Home />} />
+            <Route path="/character/:id" element={<CharacterDetail />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 
