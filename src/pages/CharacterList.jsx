@@ -61,14 +61,14 @@ const CharacterList = () => {
                 <button 
                 onClick={handleFirst} 
                 disabled={pageParam === 1} 
-                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50">
+                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-600 transition duration-200">
                     First
                 </button>
 
                 <button 
                 onClick={handlePrev} 
                 disabled={!pageInfo.prev} 
-                className="px-6 py-2 bg-gray-700 text-white rounded disabled:opacity-50">
+                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-600 transition duration-200">
                     Prev
                 </button>
 
@@ -77,14 +77,14 @@ const CharacterList = () => {
                 <button 
                 onClick={handleNext} 
                 disabled={!pageInfo.next} 
-                className="px-6 py-2 bg-gray-700 text-white rounded disabled:opacity-50">
+                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-600 transition duration-200">
                     Next
                 </button>
 
                 <button 
                 onClick={handleLast} 
                 disabled={pageParam === pageInfo.pages} 
-                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50">
+                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-600 transition duration-200">
                     Last
                 </button>
             </div>

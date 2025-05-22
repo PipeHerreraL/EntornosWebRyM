@@ -46,7 +46,7 @@ const CharacterDetail = () => {
 
     return (
         <div className="min-h-screen bg-gray-900 text-white p-6">
-            <Link to={`/characters?page=${pageParam}`} className="text-blue-400 hover:underline">&larr; Volver</Link>
+            <Link to={`/characters?page=${pageParam}`} className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 transition duration-200">&larr; Volver</Link>
             <div className="mt-6 flex flex-col md:flex-row bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                 <img src={character.image} alt={character.name} className="w-full md:w-64 object-cover" />
                 <div className="p-6 flex flex-col justify-between">
