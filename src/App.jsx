@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/CharacterList';
 import CharacterDetail from './pages/CharacterDetail';
 import Footer from './components/Footer';
 import Welcome from './pages/Welcome';
 import NotFound from './pages/NotFound';
+import CharacterList from './pages/CharacterList';
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
         <main>
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="/characters" element={<Home />} />
+            <Route path="/characters" element={<CharacterList />} />
             <Route path="/character/:id" element={<CharacterDetail />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
