@@ -1,41 +1,38 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import Card from '../components/Card';
+import React, { Fragment, useEffect, useState } from "react";
+import Card from "../components/Card";
 
 const CharacterList = () => {
+  const [characters, setCharacters] = useState([]);
 
-    const [characters, setCharacters] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch("https://rickandmortyapi.com/api/character");
+      const response = await data.json();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await fetch('https://rickandmortyapi.com/api/character');
-            const response = await data.json();
-    
-            if (response && response.results) {
-            setCharacters(response.results);
-            }
-        }
-    
-        // llamar la función
-        fetchData()
-        // capturar el error
-        .catch(console.error);
-    }, [])
+      if (response && response.results) {
+        setCharacters(response.results);
+      }
+    };
 
-    return (
-        <Fragment>
-            <section className="h-96 dark:bg-gray-800 grid place-content-center">
-                <p className='text-8xl font-black text-white'>The Rick and Morty API</p>
-            </section>
+    // llamar la función
+    fetchData()
+      // capturar el error
+      .catch(console.error);
+  }, []);
 
-            <div className="grid grid-cols-2 mt-20 mx-28  gap-6">
-                {
-                characters.map(character => (
-                    <Card key={character.id} character={character} />
-                ))
-                }
-            </div>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <section className="h-96 dark:bg-gray-800 grid place-content-center">
+        <p className="text-8xl font-black text-white">The Rick and Morty API</p>
+      </section>
+
+      <div className="grid grid-cols-2 mt-20 mx-28  gap-6">
+        {characters.map((character) => (
+          <Card key={character.id} character={character} />
+        ))}
+      </div>
+    </Fragment>
+  );
 };
 
 export default CharacterList;
