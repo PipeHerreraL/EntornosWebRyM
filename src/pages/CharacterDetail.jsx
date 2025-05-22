@@ -26,7 +26,7 @@ const CharacterDetail = () => {
 
     return (
         <div className="min-h-screen bg-gray-900 text-white p-6">
-            <Link to="/" className="text-blue-400 hover:underline">&larr; Volver</Link>
+            <Link to="/characters" className="text-blue-400 hover:underline">&larr; Volver</Link>
             <div className="mt-6 flex flex-col md:flex-row bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                 <img src={character.image} alt={character.name} className="w-full md:w-64 object-cover" />
                 <div className="p-6 flex flex-col justify-between">
