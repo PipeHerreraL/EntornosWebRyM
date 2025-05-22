@@ -1,14 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const Footer = () => {
-  return (
-    <footer className="bg-gray-800 text-gray-400 text-center text-sm py-4 mt-auto">
-      <p>
-        &copy; {new Date().getFullYear()} Rick and Morty Explorer. Todos los
-        derechos reservados.
-      </p>
-    </footer>
-  );
+    return (
+        <footer className="bg-gray-800 text-gray-400 text-center text-sm py-4 mt-auto">
+            <p>&copy; {new Date().getFullYear()} Rick and Morty Explorer. Todos los derechos reservados.</p>
+        </footer>
+    );
 };
 
 export default Footer;

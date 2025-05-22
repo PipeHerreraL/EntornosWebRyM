@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CharacterDetail from "./pages/CharacterDetail";
-import Footer from "./components/Footer";
-import Welcome from "./pages/Welcome";
-import NotFound from "./pages/NotFound";
-import CharacterList from "./pages/CharacterList";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CharacterDetail from './pages/CharacterDetail';
+import Footer from './components/Footer';
+import Welcome from './pages/Welcome';
+import NotFound from './pages/NotFound';
+import CharacterList from './pages/CharacterList';
 
 const App = () => {
   return (
@@ -21,6 +21,6 @@ const App = () => {
       </Router>
     </div>
   );
-};
+}
 
 export default App;
