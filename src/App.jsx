@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import CharacterDetail from './pages/CharacterDetail';
 import Footer from './components/Footer';
 import Welcome from './pages/Welcome';
@@ -14,7 +14,8 @@ const App = () => {
             <Route path="/" element={<Welcome />} />
             <Route path="/characters" element={<CharacterList />} />
             <Route path="/character/:id" element={<CharacterDetail />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
         </main>
         <Footer />
