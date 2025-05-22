@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 
 const CharacterDetail = () => {
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
     const [firstEpisode, setFirstEpisode] = useState(null);
+    const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
+
+        if (!id || isNaN(id) || id < 1) {
+            setNotFound(true);
+            return;
+        }
+
         const fetchData = async () => {
             const data = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
             const response = await data.json();
+
+            if (response.error) {
+                setNotFound(true);
+                return;
+            }
+
             setCharacter(response);
 
             if (Array.isArray(response.episode) && response.episode.length > 0) {
@@ -21,6 +34,10 @@ const CharacterDetail = () => {
 
         fetchData();
     }, [id]);
+
+    if (notFound) {
+        return <Navigate to="/notfound" replace/>
+    }
 
     if (!character) return <p className="text-white p-4">Cargando personaje...</p>;
 
