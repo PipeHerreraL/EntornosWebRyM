@@ -58,8 +58,6 @@ const CharacterList = () => {
             </div>
 
             <div className="flex justify-center gap-6 mb-12">
-                <button
-                onClick={handleFirst}
                 <button 
                 onClick={handleFirst} 
                 disabled={pageParam === 1} 
