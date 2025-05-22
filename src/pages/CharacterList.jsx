@@ -1,41 +1,44 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Card from '../components/Card';
 
 const CharacterList = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const pageParam = parseInt(searchParams.get('page')) || 1;
 
     const [characters, setCharacters] = useState([]);
-    const [page, setPage] = useState(1);
-    const [pageInfo, setPageInfo] = useState(1);
+    const [pageInfo, setPageInfo] = useState({ pages: 1, next: null, prev: null });
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+            const data = await fetch(`https://rickandmortyapi.com/api/character?page=${pageParam}`);
             const response = await data.json();
-    
+
             if (response && response.results) {
-            setCharacters(response.results);
-            setPageInfo(response.info)
+                setCharacters(response.results);
+                setPageInfo(response.info);
             }
-        }
-    
-        // llamar la función
-        fetchData()
-        // capturar el error
-        .catch(console.error);
-    }, [page])
+        };
+
+        fetchData().catch(console.error);
+    }, [pageParam]);
+
+    const setPage = (newPage) => {
+        setSearchParams({ page: newPage.toString() });
+    };
 
     const handleNext = () => {
-        if (pageInfo.next) setPage((prev) => prev + 1);
+        if (pageInfo.next) setPage(pageParam + 1);
     };
-    
+
     const handlePrev = () => {
-        if (pageInfo.prev) setPage((prev) => prev - 1);
+        if (pageInfo.prev) setPage(pageParam - 1);
     };
 
     const handleFirst = () => {
         setPage(1);
     };
-    
+
     const handleLast = () => {
         if (pageInfo.pages) {
             setPage(pageInfo.pages);
@@ -49,41 +52,41 @@ const CharacterList = () => {
             </section>
 
             <div className="grid grid-cols-2 mt-20 mx-28 mb-8 gap-6">
-                {
-                characters.map(character => (
-                    <Card key={character.id} character={character} />
-                ))
-                }
+                {characters.map(character => (
+                    <Card key={character.id} character={character} currentPage={pageParam} />
+                ))}
             </div>
 
             <div className="flex justify-center gap-6 mb-12">
                 <button
                 onClick={handleFirst}
-                disabled={page === 1}
-                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
-                >
+                <button 
+                onClick={handleFirst} 
+                disabled={pageParam === 1} 
+                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50">
                     First
                 </button>
-                <button
-                onClick={handlePrev}
-                disabled={!pageInfo.prev}
-                className="px-6 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
-                >
+
+                <button 
+                onClick={handlePrev} 
+                disabled={!pageInfo.prev} 
+                className="px-6 py-2 bg-gray-700 text-white rounded disabled:opacity-50">
                     Prev
                 </button>
-                <span className="text-lg font-medium text-gray-800 dark:text-gray-200">Page {page}</span>
-                <button
-                onClick={handleNext}
-                disabled={!pageInfo.next}
-                className="px-6 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
-                >
+
+                <span className="text-lg font-medium text-gray-800 dark:text-gray-200">Page {pageParam}</span>
+                
+                <button 
+                onClick={handleNext} 
+                disabled={!pageInfo.next} 
+                className="px-6 py-2 bg-gray-700 text-white rounded disabled:opacity-50">
                     Next
                 </button>
-                <button
-                onClick={handleLast}
-                disabled={page === pageInfo.pages}
-                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
-                >
+
+                <button 
+                onClick={handleLast} 
+                disabled={pageParam === pageInfo.pages} 
+                className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50">
                     Last
                 </button>
             </div>

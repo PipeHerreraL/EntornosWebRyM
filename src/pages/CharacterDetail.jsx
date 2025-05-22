@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate, useSearchParams } from 'react-router-dom';
 
 const CharacterDetail = () => {
     const { id } = useParams();
+    const [searchParams] = useSearchParams();
+    const pageParam = searchParams.get('page') || '1';
+
     const [character, setCharacter] = useState(null);
     const [firstEpisode, setFirstEpisode] = useState(null);
     const [notFound, setNotFound] = useState(false);
@@ -43,7 +46,7 @@ const CharacterDetail = () => {
 
     return (
         <div className="min-h-screen bg-gray-900 text-white p-6">
-            <Link to="/characters" className="text-blue-400 hover:underline">&larr; Volver</Link>
+            <Link to={`/characters?page=${pageParam}`} className="text-blue-400 hover:underline">&larr; Volver</Link>
             <div className="mt-6 flex flex-col md:flex-row bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                 <img src={character.image} alt={character.name} className="w-full md:w-64 object-cover" />
                 <div className="p-6 flex flex-col justify-between">
