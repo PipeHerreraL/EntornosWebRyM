@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import CharacterDetail from './pages/CharacterDetail';
-import './App.css';
+import Footer from './components/Footer';
+import Welcome from './pages/Welcome';
+import NotFound from './pages/404';
 
 const App = () => {
   return (
