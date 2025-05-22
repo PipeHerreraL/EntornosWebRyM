@@ -27,7 +27,7 @@ const CharacterList = () => {
                 <p className='text-8xl font-black text-white'>The Rick and Morty API</p>
             </section>
 
-            <div className="grid grid-cols-2 mt-20 mx-28  gap-6">
+            <div className="grid grid-cols-2 mt-20 mx-28 mb-8 gap-6">
                 {
                 characters.map(character => (
                     <Card key={character.id} character={character} />
