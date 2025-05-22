@@ -4,11 +4,22 @@ import { useParams, Link } from 'react-router-dom';
 const CharacterDetail = () => {
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
+    const [firstEpisode, setFirstEpisode] = useState(null);
 
     useEffect(() => {
-        fetch(`https://rickandmortyapi.com/api/character/${id}`)
-            .then(res => res.json())
-            .then(data => setCharacter(data));
+        const fetchData = async () => {
+            const data = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+            const response = await data.json();
+            setCharacter(response);
+
+            if (Array.isArray(response.episode) && response.episode.length > 0) {
+                const episodeData = await fetch(response.episode[0]);
+                const episodeResponse = await episodeData.json();
+                setFirstEpisode(episodeResponse.name);
+            }
+        };
+
+        fetchData();
     }, [id]);
 
     if (!character) return <p className="text-white p-4">Cargando personaje...</p>;
@@ -22,9 +33,11 @@ const CharacterDetail = () => {
                     <h2 className="text-3xl font-bold mb-4">{character.name}</h2>
                     <p><strong>Status:</strong> {character.status}</p>
                     <p><strong>Species:</strong> {character.species}</p>
+                    <p><strong>Type:</strong> {character.type || 'Unknown'}</p>
                     <p><strong>Gender:</strong> {character.gender}</p>
                     <p><strong>Origin:</strong> {character.origin?.name}</p>
                     <p><strong>Location:</strong> {character.location?.name}</p>
+                    <p><strong>First Episode:</strong> {firstEpisode || 'Cargando...'}</p>
                 </div>
             </div>
         </div>
