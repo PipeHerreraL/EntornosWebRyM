@@ -1,39 +1,24 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment} from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import Card from '../components/Card';
 import PaginationControls from '../components/PaginationControls';
+import { useFetchWithNotFound } from '../hooks/useFetchWithNotFound';
 
 const CharacterList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const pageParam = parseInt(searchParams.get('page')) || 1;
 
-    const [characters, setCharacters] = useState([]);
-    const [pageInfo, setPageInfo] = useState({ pages: 1, next: null, prev: null });
-
-    const [notFound, setNotFound] = useState(false);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await fetch(`https://rickandmortyapi.com/api/character?page=${pageParam}`);
-            const response = await data.json();
-
-            if (response.error) {
-                setNotFound(true);
-                return;
-            }
-
-            if (response && response.results) {
-                setCharacters(response.results);
-                setPageInfo(response.info);
-            }
-        };
-
-        fetchData().catch(console.error);
-    }, [pageParam]);
+    const { data, notFound, loading } = useFetchWithNotFound(`https://rickandmortyapi.com/api/character?page=${pageParam}`);
 
     if (notFound) {
         return <Navigate to="/notfound" replace />;
     }
+    if (loading) {
+        return <p className="text-white p-4">Cargando personajes...</p>;
+    }
+
+    const characters = data.results;
+    const pageInfo = data.info;
 
     return (
         <Fragment>

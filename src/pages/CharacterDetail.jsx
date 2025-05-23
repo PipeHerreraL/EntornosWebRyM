@@ -1,48 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate, useSearchParams } from 'react-router-dom';
+import { useFetchWithNotFound } from '../hooks/useFetchWithNotFound';
 
 const CharacterDetail = () => {
     const { id } = useParams();
     const [searchParams] = useSearchParams();
     const pageParam = searchParams.get('page') || '1';
 
-    const [character, setCharacter] = useState(null);
+    const { data: character, notFound } = useFetchWithNotFound(`https://rickandmortyapi.com/api/character/${id}`);
     const [firstEpisode, setFirstEpisode] = useState(null);
-    const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
-
-        if (!id || isNaN(id) || id < 1) {
-            setNotFound(true);
-            return;
+    const fetchFirstEpisode = async () => {
+        try {
+            if (character && Array.isArray(character.episode) && character.episode.length > 0) {
+                const response = await fetch(character.episode[0]);
+                const firstEpisode = await response.json();
+                setFirstEpisode(firstEpisode.name);
+            }
+        } catch (error) {
+            setFirstEpisode('Unknown');
         }
+    };
 
-        const fetchData = async () => {
-            const data = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
-            const response = await data.json();
-
-            if (response.error) {
-                setNotFound(true);
-                return;
-            }
-
-            setCharacter(response);
-
-            if (Array.isArray(response.episode) && response.episode.length > 0) {
-                const episodeData = await fetch(response.episode[0]);
-                const episodeResponse = await episodeData.json();
-                setFirstEpisode(episodeResponse.name);
-            }
-        };
-
-        fetchData();
-    }, [id]);
+    fetchFirstEpisode();
+}, [character]);
 
     if (notFound) {
         return <Navigate to="/notfound" replace/>
     }
 
-    if (!character) return <p className="text-white p-4">Cargando personaje...</p>;
+    if (!character) {
+        return <p className="text-white p-4">Cargando personaje...</p>;
+    }
 
     return (
         <div className="min-h-screen bg-gray-900 text-white p-6">
