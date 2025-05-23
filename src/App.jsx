@@ -14,8 +14,7 @@ const App = () => {
               <Route path="/" element={<Welcome />} />
               <Route path="/characters" element={<CharacterList />} />
               <Route path="/characters/:id" element={<CharacterDetail />} />
-              <Route path="/404" element={<NotFound />} />
-              <Route path="*" element={<Navigate to="/404" replace />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />

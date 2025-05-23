@@ -11,7 +11,7 @@ const CharacterList = () => {
     const { data, notFound, loading } = useFetchWithNotFound(`https://rickandmortyapi.com/api/character?page=${pageParam}`);
 
     if (notFound) {
-        return <Navigate to="/notfound" replace />;
+        return <Navigate to="/notfound" />;
     }
     if (loading) {
         return (

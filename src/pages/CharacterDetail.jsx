@@ -27,7 +27,7 @@ const CharacterDetail = () => {
 }, [character]);
 
     if (notFound) {
-        return <Navigate to="/notfound" replace/>
+        return <Navigate to="/notfound" />
     }
 
     if (!character) {
