@@ -38,17 +38,23 @@ const CharacterDetail = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white p-6">
+        <div className="bg-gray-900 text-white p-4 sm:p-6">
             <button
                 onClick={() => navigate(-1)}
-                className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 transition duration-200"
+                className="mb-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 transition duration-200
+                        max-sm:px-2 max-sm:py-1 max-sm:text-sm max-sm:rounded-md"
             >
                 &larr; Volver
             </button>
-            <div className="mt-6 flex flex-col md:flex-row bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-                <img src={character.image} alt={character.name} className="w-full md:w-64 object-cover" />
-                <div className="p-6 flex flex-col justify-between">
-                    <h2 className="text-3xl font-bold mb-4">{character.name}</h2>
+            
+            <div className="flex flex-col md:flex-row bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                <img
+                    src={character.image}
+                    alt={character.name}
+                    className="w-full h-60 md:h-auto md:w-64 object-cover"
+                />
+                <div className="p-4 sm:p-6 flex flex-col justify-between text-sm sm:text-base">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4">{character.name}</h2>
                     <p><strong>Status:</strong> {character.status}</p>
                     <p><strong>Species:</strong> {character.species}</p>
                     <p><strong>Type:</strong> {character.type || 'Unknown'}</p>
@@ -60,6 +66,7 @@ const CharacterDetail = () => {
             </div>
         </div>
     );
+
 };
 
 export default CharacterDetail;

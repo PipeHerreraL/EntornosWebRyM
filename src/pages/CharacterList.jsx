@@ -15,8 +15,9 @@ const CharacterList = () => {
     }
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-                <p className="text-xl animate-pulse">Cargando personajes<span className="animate-ping">...</span></p>
+            <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-4">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-white mb-4"></div>
+                <p className="text-lg font-medium animate-pulse">Cargando personajes...</p>
             </div>
         );
     }
@@ -27,19 +28,33 @@ const CharacterList = () => {
 
     return (
         <Fragment>
-            <section className="h-96 dark:bg-gray-800 grid place-content-center">
-                <p className='text-8xl font-black text-white'>The Rick and Morty API</p>
+            <section className="h-40 sm:h-60 md:h-72 bg-gradient-to-r from-green-700 via-emerald-800 to-green-700 flex items-center justify-center shadow-md text-center px-4">
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md animate-fade-in break-words">
+                    The Rick and Morty API
+                </h1>
             </section>
 
-            <PaginationControls className="mt-12" pageParam={pageParam} pageInfo={pageInfo} setSearchParams={setSearchParams} />
+            <div className="px-4 sm:px-6 md:px-12">
+                <PaginationControls 
+                    className="mt-10 hidden md:flex" 
+                    pageParam={pageParam} 
+                    pageInfo={pageInfo} 
+                    setSearchParams={setSearchParams} 
+                />
 
-            <div className="grid grid-cols-2 mt-8 mx-28 mb-8 gap-6">
-                {characters.map(character => (
-                    <Card key={character.id} character={character} />
-                ))}
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8 mb-12 gap-6">
+                    {characters.map(character => (
+                        <Card key={character.id} character={character} />
+                    ))}
+                </div>
+
+                <PaginationControls 
+                    className="mb-10" 
+                    pageParam={pageParam} 
+                    pageInfo={pageInfo} 
+                    setSearchParams={setSearchParams} 
+                />
             </div>
-
-            <PaginationControls className="mb-12" pageParam={pageParam} pageInfo={pageInfo} setSearchParams={setSearchParams} />
         </Fragment>
     );
 };

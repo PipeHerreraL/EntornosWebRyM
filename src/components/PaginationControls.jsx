@@ -25,34 +25,40 @@ const PaginationControls = ({ className = '', pageParam, pageInfo, setSearchPara
     };
 
     return (
-        <div className={`flex justify-center gap-6 ${className}`}>
+        <div className={`flex flex-wrap justify-center items-center gap-2 sm:gap-4 ${className}`}>
             <button 
-            onClick={handleFirst} 
-            disabled={pageParam === 1} 
-            className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-600 transition duration-200">
+                onClick={handleFirst} 
+                disabled={pageParam === 1} 
+                className="px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm bg-gray-700 text-white rounded-md transition duration-200 hover:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none"
+            >
                 First
             </button>
 
             <button 
-            onClick={handlePrev} 
-            disabled={!pageInfo.prev} 
-            className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-600 transition duration-200">
+                onClick={handlePrev} 
+                disabled={!pageInfo.prev} 
+                className="px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm bg-gray-700 text-white rounded-md transition duration-200 hover:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none"
+            >
                 Prev
             </button>
 
-            <span className="text-lg font-medium text-gray-800 dark:text-gray-200">Page {pageParam}</span>
-            
+            <span className="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200 px-2">
+                Page {pageParam}
+            </span>
+
             <button 
-            onClick={handleNext} 
-            disabled={!pageInfo.next} 
-            className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-600 transition duration-200">
+                onClick={handleNext} 
+                disabled={!pageInfo.next} 
+                className="px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm bg-gray-700 text-white rounded-md transition duration-200 hover:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none"
+            >
                 Next
             </button>
 
             <button 
-            onClick={handleLast} 
-            disabled={pageParam === pageInfo.pages} 
-            className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50 disabled:pointer-events-none hover:bg-gray-600 transition duration-200">
+                onClick={handleLast} 
+                disabled={pageParam === pageInfo.pages} 
+                className="px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm bg-gray-700 text-white rounded-md transition duration-200 hover:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none focus:outline-none"
+            >
                 Last
             </button>
         </div>
