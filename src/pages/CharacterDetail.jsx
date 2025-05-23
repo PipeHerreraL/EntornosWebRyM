@@ -42,8 +42,7 @@ const CharacterDetail = () => {
         <div className="bg-gray-900 text-white p-4 sm:p-6">
             <button
                 onClick={() => navigate(-1)}
-                className="mb-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 transition duration-200
-                        max-sm:px-2 max-sm:py-1 max-sm:text-sm max-sm:rounded-md"
+                className="mb-4 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 transition duration-200 max-sm:px-2 max-sm:py-1 max-sm:text-sm max-sm:rounded-md"
             >
                 &larr; Volver
             </button>
