@@ -18,7 +18,7 @@ const CharacterDetail = () => {
                 const firstEpisode = await response.json();
                 setFirstEpisode(firstEpisode.name);
             }
-        } catch (error) {
+        } catch {
             setFirstEpisode('Unknown');
         }
     };

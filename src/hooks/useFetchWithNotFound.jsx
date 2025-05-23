@@ -20,7 +20,7 @@ export const useFetchWithNotFound = (url) => {
                         setData(json);
                     }
                 }
-            } catch (error) {
+            } catch {
                 if (!isCancelled) setNotFound(true);
             } finally {
                 if (!isCancelled) setLoading(false);
