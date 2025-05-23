@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Navigate, useSearchParams } from 'react-router-dom';
 import Card from '../components/Card';
 import PaginationControls from '../components/PaginationControls';
 
@@ -10,10 +10,17 @@ const CharacterList = () => {
     const [characters, setCharacters] = useState([]);
     const [pageInfo, setPageInfo] = useState({ pages: 1, next: null, prev: null });
 
+    const [notFound, setNotFound] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             const data = await fetch(`https://rickandmortyapi.com/api/character?page=${pageParam}`);
             const response = await data.json();
+
+            if (response.error) {
+                setNotFound(true);
+                return;
+            }
 
             if (response && response.results) {
                 setCharacters(response.results);
@@ -23,6 +30,10 @@ const CharacterList = () => {
 
         fetchData().catch(console.error);
     }, [pageParam]);
+
+    if (notFound) {
+        return <Navigate to="/notfound" replace />;
+    }
 
     return (
         <Fragment>
