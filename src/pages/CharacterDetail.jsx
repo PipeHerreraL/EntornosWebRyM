@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { useFetchWithNotFound } from '../hooks/useFetchWithNotFound';
+import _ from 'lodash';
 
 const CharacterDetail = () => {
     const { id } = useParams();
@@ -46,7 +47,7 @@ const CharacterDetail = () => {
             >
                 &larr; Volver
             </button>
-            
+
             <div className="flex flex-col md:flex-row bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                 <img
                     src={character.image}
@@ -55,18 +56,17 @@ const CharacterDetail = () => {
                 />
                 <div className="p-4 sm:p-6 flex flex-col justify-between text-sm sm:text-base">
                     <h2 className="text-2xl sm:text-3xl font-bold mb-4">{character.name}</h2>
-                    <p><strong>Status:</strong> {character.status}</p>
-                    <p><strong>Species:</strong> {character.species}</p>
-                    <p><strong>Type:</strong> {character.type || 'Unknown'}</p>
-                    <p><strong>Gender:</strong> {character.gender}</p>
-                    <p><strong>Origin:</strong> {character.origin?.name}</p>
-                    <p><strong>Location:</strong> {character.location?.name}</p>
+                    <p><strong>Status:</strong> {_.capitalize(character.status)}</p>
+                    <p><strong>Species:</strong> {_.capitalize(character.species)}</p>
+                    <p><strong>Type:</strong> {_.capitalize(character.type) || 'Unknown'}</p>
+                    <p><strong>Gender:</strong> {_.capitalize(character.gender)}</p>
+                    <p><strong>Origin:</strong> {_.capitalize(character.origin?.name)}</p>
+                    <p><strong>Location:</strong> {_.capitalize(character.location?.name)}</p>
                     <p><strong>First Episode:</strong> {firstEpisode || 'Cargando...'}</p>
                 </div>
             </div>
         </div>
     );
-
 };
 
 export default CharacterDetail;

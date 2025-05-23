@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
-const Card = ({character, currentPage}) => {
+const Card = ({character}) => {
     
     const { id, name, status, species, image} = character;
 
@@ -16,15 +17,15 @@ const Card = ({character, currentPage}) => {
                 <div className="flex flex-col justify-between items-center text-center p-4 md:p-6 leading-normal flex-grow">
                     <div className="w-full mb-2">
                         <h5 className="text-sm sm:text-lg md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        {name}
+                            {name}
                         </h5>
                     </div>
                     <div className="space-y-1">
                         <p className="text-xs sm:text-sm md:text-base lg:text-lg font-normal text-gray-700 dark:text-gray-400 whitespace-nowrap">
-                            {status}
+                            {_.capitalize(status)}
                         </p>
                         <p className="text-xs sm:text-sm md:text-base lg:text-lg font-normal text-gray-700 dark:text-gray-400 whitespace-nowrap">
-                            {species}
+                            {_.capitalize(species)}
                         </p>
                     </div>
                 </div>
