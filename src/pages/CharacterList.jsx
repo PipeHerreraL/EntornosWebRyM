@@ -28,7 +28,7 @@ const CharacterList = () => {
 
     return (
         <Fragment>
-            <section className="h-40 sm:h-60 md:h-72 bg-gradient-to-r from-green-700 via-emerald-800 to-green-700 flex items-center justify-center shadow-md text-center px-4">
+            <section className="h-32 sm:h-38 md:h-40 bg-gradient-to-r from-green-700 via-emerald-600 dark:via-emerald-800 to-green-700 flex items-center justify-center shadow-md text-center px-4">
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md animate-fade-in break-words">
                     The Rick and Morty API
                 </h1>

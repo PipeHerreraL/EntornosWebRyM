@@ -8,7 +8,7 @@ import CharacterList from './pages/CharacterList';
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen w-full flex flex-col bg-gray-900 text-white">
+      <div className="min-h-screen w-full flex flex-col bg-gray-200 dark:bg-gray-900 text-white">
           <main className='flex-grow'>
             <Routes>
               <Route path="/" element={<Welcome />} />

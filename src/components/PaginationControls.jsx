@@ -35,7 +35,7 @@ const PaginationControls = ({ className = '', pageParam, pageInfo, setSearchPara
                 Prev
             </PaginationButton>
 
-            <span className="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200 px-2">
+            <span className="text-sm sm:text-base font-semibold text-green-900 dark:text-gray-200 px-2">
                 Page {pageParam}
             </span>
 
