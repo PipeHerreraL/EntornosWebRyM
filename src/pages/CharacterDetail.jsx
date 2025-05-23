@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate, useSearchParams } from 'react-router-dom';
 import { useFetchWithNotFound } from '../hooks/useFetchWithNotFound';
 
@@ -31,7 +31,11 @@ const CharacterDetail = () => {
     }
 
     if (!character) {
-        return <p className="text-white p-4">Cargando personaje...</p>;
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+                <p className="text-xl animate-pulse">Cargando personaje<span className="animate-ping">...</span></p>
+            </div>
+        ); 
     }
 
     return (

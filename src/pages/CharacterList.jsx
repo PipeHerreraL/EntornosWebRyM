@@ -1,4 +1,4 @@
-import { Fragment} from 'react';
+import React, { Fragment} from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import Card from '../components/Card';
 import PaginationControls from '../components/PaginationControls';
@@ -14,8 +14,13 @@ const CharacterList = () => {
         return <Navigate to="/notfound" replace />;
     }
     if (loading) {
-        return <p className="text-white p-4">Cargando personajes...</p>;
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+                <p className="text-xl animate-pulse">Cargando personajes<span className="animate-ping">...</span></p>
+            </div>
+        );
     }
+
 
     const characters = data.results;
     const pageInfo = data.info;
