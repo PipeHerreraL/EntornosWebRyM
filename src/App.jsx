@@ -7,20 +7,20 @@ import CharacterList from './pages/CharacterList';
 
 const App = () => {
   return (
-    <div className="min-h-screen w-full flex flex-col bg-gray-900 text-white">
-      <Router>
-        <main>
-          <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/characters" element={<CharacterList />} />
-            <Route path="/characters/:id" element={<CharacterDetail />} />
-            <Route path="/404" element={<NotFound />} />
-            <Route path="*" element={<Navigate to="/404" replace />} />
-          </Routes>
-        </main>
-        <Footer />
-      </Router>
-    </div>
+    <Router>
+      <div className="min-h-screen w-full flex flex-col bg-gray-900 text-white">
+          <main className='flex-grow'>
+            <Routes>
+              <Route path="/" element={<Welcome />} />
+              <Route path="/characters" element={<CharacterList />} />
+              <Route path="/characters/:id" element={<CharacterDetail />} />
+              <Route path="/404" element={<NotFound />} />
+              <Route path="*" element={<Navigate to="/404" replace />} />
+            </Routes>
+          </main>
+          <Footer />
+      </div>
+    </Router>
   );
 }
 
