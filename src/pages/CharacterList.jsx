@@ -35,7 +35,7 @@ const CharacterList = () => {
 
             <div className="grid grid-cols-2 mt-8 mx-28 mb-8 gap-6">
                 {characters.map(character => (
-                    <Card key={character.id} character={character} currentPage={pageParam} />
+                    <Card key={character.id} character={character} />
                 ))}
             </div>
 
